@@ -54,7 +54,7 @@ pub fn search<'a>(config: &Config, contents: &'a str) -> Vec<&'a str> {
         let contained = line.contains(&config.query);
         if contained && !config.invert {
             results.push(line);
-        } else if config.invert{
+        } else if !contained && config.invert {
             results.push(line);
         }
     }
@@ -68,7 +68,7 @@ pub fn search_case_insensitive<'a>(config: &Config, contents: &'a str) -> Vec<&'
         let contained = line.to_lowercase().contains(&query);
         if contained && !config.invert {
             results.push(line);
-        } else if config.invert{
+        } else if !contained && config.invert {
             results.push(line);
         }
     }
